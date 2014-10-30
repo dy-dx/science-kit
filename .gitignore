@@ -11,7 +11,8 @@ Desktop.ini
 /*.pid
 /*.ipc
 
+/dist/*
+!/dist/.gitkeep
 
 .sass-cache
-.grunt
 /node_modules

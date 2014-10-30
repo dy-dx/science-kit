@@ -1,24 +1,21 @@
 # science-kit [![Dependency Status](https://david-dm.org/dy-dx/science-kit.png)](https://david-dm.org/dy-dx/science-kit) [![devDependency Status](https://david-dm.org/dy-dx/science-kit/dev-status.png)](https://david-dm.org/dy-dx/science-kit#info=devDependencies)
 
 
-Seed project for quickly creating web experiments.
+Seed project for quickly creating web experiments using Gulp and Browserify.
 
-Supports Jade, Sass, CoffeeScript, Mocha, live reloading and CSS injection.
+Supports Jade, SASS, CoffeeScript, live reloading and CSS injection.
 
 
 ## Usage
 
 Clone this repo and install the dependencies:
 
-    $ gem install sass
-
+    $ npm install -g gulp
     $ npm install
 
 Run:
 
-    $ grunt
-
-and append `/demo` to the url in your browser.
+    $ gulp
 
 Develop in the `src` directory.
 
