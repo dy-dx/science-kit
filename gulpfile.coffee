@@ -13,6 +13,7 @@ gulp.task 'sass', ->
   gulp.src './src/css/**/*.scss'
       .pipe sass()
       .pipe gulp.dest('./dist')
+      .pipe browserSync.reload(stream: true)
 
 
 gulp.task 'jade', ->
@@ -45,7 +46,7 @@ gulp.task 'watch', ['sass', 'jade'], ->
   gulp.watch ['src/**/*.scss'], ['sass']
   gulp.watch ['src/**/*.jade'], ['jade']
   gulp.watch ['src/img/**/*'],  browserSync.reload
-  gulp.watch ['./dist/*'],      browserSync.reload
+  gulp.watch ['dist/*.!(css)'], browserSync.reload
 
   return rebundle()
 
