@@ -10,8 +10,8 @@
 , "dependencies": {
   }
 , "devDependencies": {
-    "browser-sync": "~2.5.2"
-  , "browserify": "~9.0.7"
+    "browser-sync": "~2.5.3"
+  , "browserify": "~9.0.8"
   , "coffee-script": "~1.9.1"
   , "coffeeify": "~1.0.0"
   , "gulp": "~3.8.11"
