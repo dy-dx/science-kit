@@ -6,7 +6,7 @@ browserSync = require 'browser-sync'
 source      = require 'vinyl-source-stream'
 jade        = require 'gulp-jade'
 sass        = require 'gulp-sass'
-gutil       = require 'gulp-util'
+notify      = require 'gulp-notify'
 
 
 gulp.task 'sass', ->
@@ -30,7 +30,7 @@ gulp.task 'watch', ['sass', 'jade'], ->
 
   rebundle = ->
     bundler.bundle()
-      .on 'error', gutil.log.bind(gutil, 'Browserify Error')
+      .on 'error', notify.onError('<%= error.message %>')
       .pipe source('bundle.js')
       .pipe gulp.dest('./dist')
 
