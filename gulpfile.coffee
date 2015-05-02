@@ -12,13 +12,15 @@ notify      = require 'gulp-notify'
 gulp.task 'sass', ->
   gulp.src './src/css/**/*.scss'
       .pipe sass()
+      .on 'error', notify.onError('<%= error.message %>')
       .pipe gulp.dest('./dist')
       .pipe browserSync.reload(stream: true)
 
 
 gulp.task 'jade', ->
   gulp.src './src/*.jade'
-      .pipe jade()
+      .pipe jade(pretty: true)
+      .on 'error', notify.onError('<%= error.message %>')
       .pipe gulp.dest('./dist')
 
 

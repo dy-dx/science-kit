@@ -11,7 +11,7 @@
   }
 , "devDependencies": {
     "browser-sync": "~2.6.9"
-  , "browserify": "~9.0.8"
+  , "browserify": "~10.0.0"
   , "coffee-script": "~1.9.2"
   , "coffeeify": "~1.1.0"
   , "gulp": "~3.8.11"
@@ -20,6 +20,6 @@
   , "gulp-sass": "dlmanning/gulp-sass#2.x"
   , "jquery": "~2.1.4"
   , "vinyl-source-stream": "~1.1.0"
-  , "watchify": "~3.2.0"
+  , "watchify": "~3.2.1"
   }
 }
