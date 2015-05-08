@@ -9,6 +9,13 @@ sass        = require 'gulp-sass'
 notify      = require 'gulp-notify'
 
 
+bundle = (bundler) ->
+  bundler.bundle()
+    .on 'error', notify.onError('<%= error.message %>')
+    .pipe source('bundle.js')
+    .pipe gulp.dest('./dist')
+
+
 gulp.task 'sass', ->
   gulp.src './src/css/**/*.scss'
       .pipe sass()
@@ -30,13 +37,7 @@ gulp.task 'watch', ['sass', 'jade'], ->
   bundler = watchify(browserify('./src/js/main.coffee', watchify.args))
   bundler.transform(coffeeify)
 
-  rebundle = ->
-    bundler.bundle()
-      .on 'error', notify.onError('<%= error.message %>')
-      .pipe source('bundle.js')
-      .pipe gulp.dest('./dist')
-
-  bundler.on('update', rebundle)
+  bundler.on('update', -> bundle(bundler))
 
   browserSync
     open: false
@@ -51,7 +52,13 @@ gulp.task 'watch', ['sass', 'jade'], ->
   gulp.watch ['src/img/**/*'],  browserSync.reload
   gulp.watch ['dist/*.!(css)'], browserSync.reload
 
-  return rebundle()
+  return bundle(bundler)
+
+
+gulp.task 'build', ['sass', 'jade'], ->
+  bundler = browserify('./src/js/main.coffee')
+  bundler.transform(coffeeify)
+  return bundle(bundler)
 
 
 gulp.task 'default', ['watch']
