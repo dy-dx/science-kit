@@ -1,5 +1,6 @@
 {
-  "boss"      : true
-, "laxcomma"  : true
-, "node"      : true
+  "boss"        : true
+, "laxcomma"    : true
+, "node"        : true
+, "browserify"  : true
 }
