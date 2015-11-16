@@ -6,6 +6,7 @@ var source = require('vinyl-source-stream');
 var jade = require('gulp-jade');
 var sass = require('gulp-sass');
 var notify = require('gulp-notify');
+var babelify = require('babelify');
 
 function bundle (bundler) {
   return bundler.bundle()
@@ -35,6 +36,7 @@ gulp.task('jade', function() {
 
 gulp.task('watch', ['sass', 'jade'], function() {
   var bundler = watchify(browserify('./src/js/index.js', watchify.args));
+  bundler.transform(babelify, {presets: ["es2015", "react"]});
 
   bundler.on('update', function () { return bundle(bundler); });
 
@@ -58,6 +60,7 @@ gulp.task('watch', ['sass', 'jade'], function() {
 
 gulp.task('build', ['sass', 'jade'], function () {
   var bundler = browserify('./src/js/index.js');
+  bundler.transform(babelify, {presets: ["es2015", "react"]});
   return bundle(bundler);
 });
 

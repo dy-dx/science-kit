@@ -1,3 +1,5 @@
 var $ = require('jquery');
 
-$(document.body).append('Hello, World!');
+setTimeout(() => {
+  $(document.body).append('Hello, World!');
+});
