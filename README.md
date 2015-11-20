@@ -3,7 +3,7 @@
 
 Seed project for quickly creating web experiments using Gulp and Browserify.
 
-Supports Jade, SASS, CoffeeScript, live reloading and CSS injection.
+Supports Jade, SASS, Babel, live reloading and CSS injection.
 
 
 ## Usage
