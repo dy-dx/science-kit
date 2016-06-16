@@ -1,5 +1,5 @@
-var $ = require('jquery');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './components/App'
 
-setTimeout(() => {
-  $(document.body).append('Hello, World!');
-});
+ReactDOM.render(React.createElement(App), document.querySelector('#main'))

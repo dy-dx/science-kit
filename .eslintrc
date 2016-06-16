@@ -1,0 +1,16 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "standard", "standard-react"],
+  "rules": {
+  },
+  "globals": {
+  },
+  "env": {
+    "jasmine": {
+      "globals": {
+        "describe": true,
+        "it": true
+      }
+    }
+  }
+}
