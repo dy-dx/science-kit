@@ -3,7 +3,7 @@ const watchify = require('watchify')
 const browserify = require('browserify')
 const browserSync = require('browser-sync')
 const source = require('vinyl-source-stream')
-const jade = require('gulp-jade')
+const pug = require('gulp-pug')
 const sass = require('gulp-sass')
 const notify = require('gulp-notify')
 const babelify = require('babelify')
@@ -41,16 +41,16 @@ gulp.task('sass', () => (
     }))
 ))
 
-gulp.task('jade', () => (
-  gulp.src('./src/*.jade')
-    .pipe(jade({
+gulp.task('pug', () => (
+  gulp.src('./src/*.pug')
+    .pipe(pug({
       pretty: true
     }))
     .on('error', notify.onError('<%= error.message %>'))
     .pipe(gulp.dest('./dist'))
 ))
 
-gulp.task('watch', ['sass', 'jade'], () => {
+gulp.task('watch', ['sass', 'pug'], () => {
   watchify.args.extensions = watchify.args.extensions || []
   watchify.args.extensions.push('.jsx')
   const bundler = watchify(browserify('./src/js/index.js', watchify.args))
@@ -69,14 +69,14 @@ gulp.task('watch', ['sass', 'jade'], () => {
   })
 
   gulp.watch(['src/**/*.scss'], ['sass'])
-  gulp.watch(['src/**/*.jade'], ['jade'])
+  gulp.watch(['src/**/*.pug'], ['pug'])
   gulp.watch(['src/img/**/*'], browserSync.reload)
   gulp.watch(['dist/*.!(css)'], browserSync.reload)
 
   return bundle(bundler)
 })
 
-gulp.task('build', ['sass', 'jade'], () => {
+gulp.task('build', ['sass', 'pug'], () => {
   const bundler = browserify('./src/js/index.js', { extensions: ['.jsx'] })
   bundler.transform(babelify, babelOptions)
   return bundle(bundler)
