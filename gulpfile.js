@@ -8,7 +8,23 @@ const sass = require('gulp-sass')
 const notify = require('gulp-notify')
 const babelify = require('babelify')
 
-const bundle = (bundler) => (
+const babelOptions = {
+  presets: [
+    ['env', {
+      targets: {
+        browsers: [
+          'last 2 chrome versions',
+          'last 2 firefox versions',
+          'last 2 safari versions',
+          'not safari < 11'
+        ]
+      }
+    }],
+    ['react']
+  ]
+}
+
+const bundle = bundler => (
   bundler.bundle()
     .on('error', notify.onError('<%= error.message %>'))
     .pipe(source('bundle.js'))
@@ -38,7 +54,7 @@ gulp.task('watch', ['sass', 'jade'], () => {
   watchify.args.extensions = watchify.args.extensions || []
   watchify.args.extensions.push('.jsx')
   const bundler = watchify(browserify('./src/js/index.js', watchify.args))
-  bundler.transform(babelify, { presets: ['es2015-loose', 'stage-0', 'react'] })
+  bundler.transform(babelify, babelOptions)
 
   bundler.on('update', () => bundle(bundler))
 
@@ -62,7 +78,7 @@ gulp.task('watch', ['sass', 'jade'], () => {
 
 gulp.task('build', ['sass', 'jade'], () => {
   const bundler = browserify('./src/js/index.js', { extensions: ['.jsx'] })
-  bundler.transform(babelify, { presets: ['es2015-loose', 'stage-0', 'react'] })
+  bundler.transform(babelify, babelOptions)
   return bundle(bundler)
 })
 
